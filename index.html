@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Banbi-行情</title>
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel='stylesheet' href='/css/common.css' />
+    <link rel='stylesheet' href='/css/index.css' />
+  </head>
+  <body>
+  <div class="container">
+   <div class="header">
+    <div class="h-container">
+          <a class="logo" href="" title="搬币网首页"></a>
+          <ul class="menu">
+              <li class="acive" ><a href="/">行情</a></li>
+              <li ><a href="/community">社区</a></li> 
+              <li><a href="">帮助</a></li>
+          </ul>
+          <!--<a class="register" href="">-->
+              <!--<i class="icon icon_register"></i>-->
+              <!--<span>注册</span>-->
+          <!--</a>-->
+          <!--<a class="login" href="">-->
+              <!--<i class="icon icon_login"></i>-->
+              <!--<span>登录</span>-->
+          <!--</a>-->
+    </div>
+  </div>
+    <div class="content">
+      <div class="left box-shadow">
+        <div id="search-query" class="search-query">
+          <i class="icon icon-search"></i>
+          <input id="searchContent"  type="text" placeholder="键入搜索交易平台或交易对"  @focus="focus()" @blur="blur()">
+          <span v-if="total" class="result">共有{{total}}个结果，{{trPairNum}}个币种，{{nameNum}}个交易平台</span>
+        </div>
+        <ul class="tabs">
+          <li class="id cur"><a href="javascript:void (0);"  @click="order('id',0)">默认排序</a></li>
+          <li class="moRat"><a href="javascript:void (0);"  @click="order('moRat',1)">挖矿占比</a></li>
+          <li class="divRat"><a href="javascript:void (0);"  @click="order('divRat',2)">持平台币分红</a></li>
+          <!--<li class="last">-->
+              <!--<select><option value ="类型">类型</option>-->
+               <!--</select>-->
+          <!--</li>-->
+        </ul>
+        <table class="table" >
+          <thead>
+          <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>交易对</th>
+            <th>挖矿占比</th>
+            <th>邀请返利</th>
+            <th>持平台币分红</th>
+            <th class="duration">挖矿上线 - 结束时间</th>
+          </tr>
+          </thead>
+          <tbody v-if="items.length" >
+
+              <tr v-for="item in items">
+                <td class="num">{{item.curr_id}}</td>
+                <td class="name">
+                  <a :href="item.url"><img :src="item.logo"><span v-html="item.curr_name"></span></a>
+                </td>
+                <td class="tran-pair" ><span v-html="item.pair_trade"></span></td>
+                <td class="mo-rat"><span class="ratio">{{item.mining_ratio}}%</span></td>
+                <td class="inv-re"><span class="ratio">{{item.rebate_ratio}}%</span></td>
+                <td class="div-rat"><span class="ratio">{{item.dividend}}%</span></td>
+                <td class="duration">{{item.mining_start}}-{{item.mining_end}}</td>
+              </tr>
+              <tr >
+                  <td class="loading hide" colspan="7">  正在加载... </td>
+              </tr>
+          </tbody>
+          <tbody v-else>
+              <tr>
+                  <td colspan="7"> <p><br> /(ㄒoㄒ)/ ! 没有搜索到您要的数据 </p></td>
+              </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="right">
+        
+          <a id="adv" class="adv" href=""></a>
+          
+          <div id="notice" class="notice box-shadow">
+            <p class="tit">平台公告</p>
+            <ul v-if="notices.length">
+
+              <li class="notice-item" v-for="notice in notices">
+                <a href="">
+                  <p class="notice-tit" :title="notice.title">
+                      <i :class="[ {'ic ic-news': notice.type == 1}, {'ic ic-notif': notice.type == 2}, {'ic ic-raiders': notice.type == 3}]"></i>
+                  {{notice.title}}</p>
+                  <p class="notice-desc">{{notice.description}}</p>
+                </a>
+              </li>
+            </ul>
+            <p v-else>暂无公告!</p>
+            <p v-if="notices.length" class="more"><a href="">全部公告 ></a></p>
+          </div>
+          
+          <div class="weixin box-shadow">
+            <img id="qrcode" src="/images/qr.png" alt="">
+            <p class="weixin-tit">Banbi 官方微信群</p>
+            <p class="weixin-desc">入群获取第一手 Banbi 信息，请使用微信 App 扫一扫进行扫码</p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.highlight.js"></script>
+  <script src="/js/vue.js"></script>
+  <script src="/js/index.js"></script>
+  </body>
+</html>
