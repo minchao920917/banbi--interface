@@ -10,7 +10,7 @@
   <div class="container">
    <div class="header">
     <div class="h-container">
-          <a class="logo" href="" title="搬币网首页"></a>
+          <a class="logo"  href="/index.html" title="搬币姐首页"></a>
           <ul class="menu">
               <li ><a href="/index.html">行情</a></li>
               <li class="acive"><a href="/community.html">资讯</a></li> 
@@ -32,88 +32,44 @@
             <ul class="rec-list" >
                 <li class="class-item">
                    <p class="title"><i class="ic ic-topic"></i>今日话题</p>
-                    <a v-for="topic in topics" v-bind:href="['/details.html?id='+topic.notice_id]" class="">{{topic.title}}</a>
+                    <a v-for="topic in topics" target="_blank" v-bind:href="['/details.html?id='+topic.notice_id]" v-bind:title="topic.title" class="">{{topic.title}}</a>
                 </li>
                 <li class="class-item">
                     <p class="title"><i class="ic ic-guide"></i>进阶指南</p>
-                   <a v-for="guide in guides" v-bind:href="['/details.html?id='+guide.notice_id]" class="">{{guide.title}}</a>
+                   <a v-for="guide in guides" target="_blank" v-bind:href="['/details.html?id='+guide.notice_id]" v-bind:title="guide.title" class="">{{guide.title}}</a>
                 </li>
                 <li class="class-item">
                     <p class="title"><i class="ic ic-ash"></i>骨灰玩家</p>
-                   <a v-for="ash in ashs" v-bind:href="['/details.html?id='+ash.notice_id]" class="">{{ash.title}}</a>
+                   <a v-for="ash in ashs" target="_blank" v-bind:href="['/details.html?id='+ash.notice_id]" v-bind:title="ash.title" class="">{{ash.title}}</a>
                 </li>
             </ul>
             <div class="picker">
                 <p class="title">精选资讯</p>
-                <a href="">
-                    <p class="pick-title">如何看待韩国 B 网 27 小时内 LTC 价格与其它交易所相差近 27% ？</p>
-                    <p class="desc"><span class="author">套利小王</span><span class="time">06-24 23:22</span></p>
-                    <p class="cont">我们无法知道市场明天是涨还是跌，但是我们知道价差一定会回归。所以，对于大多数产业客户来说，他们研究的就是基差，他们的目标就是来赚这块确定性的利润。我在前面的文章中曾介绍过的跨期套利属于价差交易法，对于产业客户来说，跨期套利仅仅是价差交易法的一种，他们还可以进行期现套利，跨市套利，这些都可以利用价差交易法来获得相对确定性的利润。关于价差交易法，并不是什么新鲜的技术或者理论，如果你想了解这方面的</p>
+                <a target="_blank" v-bind:href="['/details.html?id='+picked.notice_id]" v-bind:title="picked.title">
+                    <p class="pick-title">{{picked.title}}</p>
+                    <p class="desc"><span class="author">{{picked.author}}</span><span class="time">{{picked.create_time}}</span></p>
+                    <p class="cont">{{picked.description}}</p>
                 </a>
             </div>
         </div>
         <div class="information">
             <p class="tit">实时资讯</p>
-            <ul class="info-list">
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">财政部PPP中心主任：区块链等技术有助加强信息公开</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">财政部PPP中心主任焦小平近日在上海财经大学主办的2017年PPP市场透明度报告发布会上表示，针对当前PPP信息公开存在的信息公开能力不足、信息公开时效性不足、信息公开系统性不足的问题，要用信息技术全面提升平台功能，运用区块链管住数据的真实性，运用大数据和人工智能帮助政府监管，运用云计算解决海量信息分析问题。</p>
+            <ul class="info-list" v-if="items">
+                <li class="info-item" v-for="item in items">
+                    <a target="_blank" v-bind:href="['/details.html?id='+item.notice_id]" v-bind:title="item.title">
+                        <p class="info-tit">{{item.title}}</p>
+                        <p class="info-desc"><span class="info-author">{{item.author}}</span><span class="info-time">{{item.create_time |formatPassTime}}</span></p>
+                        <p class="info-cont">{{item.description}}</p>
                     </a>
                 </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">CoinDesk评XRP走势：日内最高将突破0.4896美元</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">目前尝试双底形态失败，上涨趋势不明显。如果XRP回弹至0.4896美元之上，XRP有机会再次上探0.52美元，形成双底形态，走势将逆跌为涨。</p>
-                    </a>
+                <li class="info-item last-item" >
+                    <p class="loading hide">正在加载... </p>
                 </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">InsurChain与“脚印”达成深度战略合作</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">据官方消息，InsurChain（INSUR）已与保险社群“脚印”达成深度战略合作，双方将共同挖掘和创造保险行业价值。其中，“脚印”将为InsurChain提供保险行业社群经验、渠道资源及用户流量；InsurChain将为“脚印”提供区块链技术，赋能其高端理财服务。</p>
-                    </a>
-                </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">财政部PPP中心主任：区块链等技术有助加强信息公开</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">财政部PPP中心主任焦小平近日在上海财经大学主办的2017年PPP市场透明度报告发布会上表示，针对当前PPP信息公开存在的信息公开能力不足、信息公开时效性不足、信息公开系统性不足的问题，要用信息技术全面提升平台功能，运用区块链管住数据的真实性，运用大数据和人工智能帮助政府监管，运用云计算解决海量信息分析问题。</p>
-                    </a>
-                </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">财政部PPP中心主任：区块链等技术有助加强信息公开</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">财政部PPP中心主任焦小平近日在上海财经大学主办的2017年PPP市场透明度报告发布会上表示，针对当前PPP信息公开存在的信息公开能力不足、信息公开时效性不足、信息公开系统性不足的问题，要用信息技术全面提升平台功能，运用区块链管住数据的真实性，运用大数据和人工智能帮助政府监管，运用云计算解决海量信息分析问题。</p>
-                    </a>
-                </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">CoinDesk评XRP走势：日内最高将突破0.4896美元</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">目前尝试双底形态失败，上涨趋势不明显。如果XRP回弹至0.4896美元之上，XRP有机会再次上探0.52美元，形成双底形态，走势将逆跌为涨。</p>
-                    </a>
-                </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">InsurChain与“脚印”达成深度战略合作</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">据官方消息，InsurChain（INSUR）已与保险社群“脚印”达成深度战略合作，双方将共同挖掘和创造保险行业价值。其中，“脚印”将为InsurChain提供保险行业社群经验、渠道资源及用户流量；InsurChain将为“脚印”提供区块链技术，赋能其高端理财服务。</p>
-                    </a>
-                </li>
-                <li class="info-item">
-                    <a href="">
-                        <p class="info-tit">财政部PPP中心主任：区块链等技术有助加强信息公开</p>
-                        <p class="info-desc"><span class="info-author">微进化Tim</span><span class="info-time">9 分钟前</span></p>
-                        <p class="info-cont">财政部PPP中心主任焦小平近日在上海财经大学主办的2017年PPP市场透明度报告发布会上表示，针对当前PPP信息公开存在的信息公开能力不足、信息公开时效性不足、信息公开系统性不足的问题，要用信息技术全面提升平台功能，运用区块链管住数据的真实性，运用大数据和人工智能帮助政府监管，运用云计算解决海量信息分析问题。</p>
-                    </a>
-                </li>
-
             </ul>
-
+            <ul v-else>
+                <li><p><br> /(ㄒoㄒ)/ ! 没有搜索到您要的数据 </p></li>
+            </ul>
+            
         </div>
     </div>
 </div>

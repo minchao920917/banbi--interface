@@ -10,7 +10,7 @@
   <div class="container">
    <div class="header">
     <div class="h-container">
-          <a class="logo" href="" title="搬币网首页"></a>
+          <a class="logo" href="/index.html" title="搬币姐首页"></a>
           <ul class="menu">
               <li class="acive" ><a href="/">行情</a></li>
               <li ><a href="/community.html">资讯</a></li> 
@@ -35,8 +35,8 @@
         </div>
         <ul class="tabs">
           <li class="id cur"><a href="javascript:void (0);"  @click="order('id',0)">默认排序</a></li>
-          <li class="moRat"><a href="javascript:void (0);"  @click="order('moRat',1)">挖矿占比</a></li>
-          <li class="divRat"><a href="javascript:void (0);"  @click="order('divRat',2)">持平台币分红</a></li>
+          <li class="moRat"><a target="_blank" href="javascript:void (0);"  @click="order('moRat',1)">挖矿占比</a></li>
+          <li class="divRat"><a target="_blank" href="javascript:void (0);"  @click="order('divRat',2)">持平台币分红</a></li>
           <!--<li class="last">-->
               <!--<select><option value ="类型">类型</option>-->
                <!--</select>-->
@@ -59,7 +59,7 @@
               <tr v-for="item in items">
                 <td class="num">{{item.curr_id}}</td>
                 <td class="name">
-                  <a :href="item.url"><img :src="item.logo"><span v-html="item.curr_name"></span></a>
+                  <a target="_blank" :href="item.url"><img :src="item.logo"><span v-html="item.curr_name"></span></a>
                 </td>
                 <td class="tran-pair" ><span v-html="item.pair_trade"></span></td>
                 <td class="mo-rat"><span class="ratio">{{item.mining_ratio}}%</span></td>
@@ -89,7 +89,7 @@
             <ul v-if="notices.length">
 
               <li class="notice-item" v-for="notice in notices">
-                <a href="">
+                <a target="_blank" v-bind:href="['/details.html?id='+notice.notice_id]">
                   <p class="notice-tit" :title="notice.title">
                       <i :class="[ {'ic ic-news': notice.type == 1}, {'ic ic-notif': notice.type == 2}, {'ic ic-raiders': notice.type == 3}]"></i>
                   {{notice.title}}</p>
@@ -98,7 +98,7 @@
               </li>
             </ul>
             <p v-else>暂无公告!</p>
-            <p v-if="notices.length" class="more"><a href="">全部公告 ></a></p>
+            <p v-if="notices.length" class="more"><a target="_blank" href="/community.html">全部公告 ></a></p>
           </div>
           
           <div class="weixin box-shadow">

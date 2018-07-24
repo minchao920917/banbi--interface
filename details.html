@@ -10,7 +10,7 @@
   <div class="container">
    <div class="header">
     <div class="h-container">
-          <a class="logo" href="" title="搬币网首页"></a>
+          <a class="logo"  href="/index.html" title="搬币姐首页"></a>
           <ul class="menu">
               <li  ><a href="/">行情</a></li>
               <li class="acive" ><a href="/community.html">社区</a></li> 
@@ -30,11 +30,13 @@
 
         <div class="information">
             <p class="tit">资讯</p>
-            <div class="article">
-                <p class="title">财政部PPP中心主任：区块链等技术有助加强信息公开</p>
-                <p class="desc"><span class="author">微进化Tim</span><span class="time">9 分钟前</span></p>
-                <p class="cont">财政部PPP中心主任焦小平近日在上海财经大学主办的2017年PPP市场透明度报告发布会上表示，针对当前PPP信息公开存在的信息公开能力不足、信息公开时效性不足、信息公开系统性不足的问题，要用信息技术全面提升平台功能，运用区块链管住数据的真实性，运用大数据和人工智能帮助政府监管，运用云计算解决海量信息分析问题。</p>
-                <p class="send-time">07-19, 2018</p>
+            <div class="article" v-if="article">
+                <p class="title">{{article.title}}</p>
+                <p class="desc"><span class="author">{{article.author}}</span><span class="time">{{article.create_time | formatPassTime}}</span></p>
+                <div v-html="article.content" class="cont">
+                  
+                </div>
+                <p class="send-time">{{article.create_time}}</p>
             </div>
         </div>
     </div>
