@@ -99,8 +99,6 @@ $(function(){
                  url: "http://api.banbijie.com/?s=Currency.search",
                  data: req,
                  success: function(data){
-                    // console.log(req);
-                    // console.log(data.data);
                     if(req.keyword === ""){
                         vm.total = 0;
                         vm.nameNum =0;
@@ -140,8 +138,9 @@ $(function(){
                     vm.nameNum = data.data.currencyTotal;
                     vm.trPairNum = data.data.platformTotal
                     
-                    if(data.data.items.length>0){
+                    if(data.data.items.length > 0){
                         vm.items = vm.items.concat( data.data.items);
+                        $(".loading").addClass("hide");
                         vm.$nextTick(function(){
                             hightLight();
                         })
@@ -165,8 +164,15 @@ $(function(){
                 vm.items =[];
                 req.keyword = $(this).val().trim();
                 req.n = 1;
-                getTableData(vm,req);
-
+                var regEn = /[`~!@#$%^&*()_+<>?:"{},.\;'[\]]/im,
+                    regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
+                if(regEn.test(req.keyword) || regCn.test(req.keyword)){
+                    vm.items =[];
+                }else{
+                     getTableData(vm,req);
+                }
+                // console.log(req.keyword);
+               
             })
         }
         //屏幕滚动监听
