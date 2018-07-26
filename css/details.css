@@ -149,7 +149,7 @@ body {
     max-width: 100%;
 }
 
-.cont p{
+.cont p,.cont p *{
     font-size:16px;
     font-family:PingFangSC-Regular;
     color:rgba(74,74,74,1);
