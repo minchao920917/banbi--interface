@@ -35,6 +35,11 @@ $(function(){
                         blur:function(){
                             document.getElementById("search-query").classList.remove("focus");
                         }
+                    },
+                    filters:{
+                        dateForm:function(startTime){
+                            return startTime.replace(/-/g, "/");
+                        }
                     }
                     
                 })

@@ -65,7 +65,7 @@
                 <td class="mo-rat"><span class="ratio">{{item.mining_ratio}}%</span></td>
                 <td class="inv-re"><span class="ratio">{{item.rebate_ratio}}%</span></td>
                 <td class="div-rat"><span class="ratio">{{item.dividend}}%</span></td>
-                <td class="duration">{{item.mining_start}}-{{item.mining_end}}</td>
+                <td class="duration">{{item.mining_start }}-{{item.mining_end}}</td>
               </tr>
               <tr >
                   <td class="loading hide" colspan="7">  正在加载... </td>
@@ -85,7 +85,7 @@
           <a id="adv" class="adv" href=""></a>
           
           <div id="notice" class="notice box-shadow">
-            <p class="tit">平台公告</p>
+            <p class="tit">平台资讯</p>
             <ul v-if="notices.length">
 
               <li class="notice-item" v-for="notice in notices">
@@ -97,8 +97,8 @@
                 </a>
               </li>
             </ul>
-            <p v-else>暂无公告!</p>
-            <p v-if="notices.length" class="more"><a target="_blank" href="/community.html">全部公告 ></a></p>
+            <p v-else>暂无资讯!</p>
+            <p v-if="notices.length" class="more"><a target="_blank" href="/community.html">全部资讯 ></a></p>
           </div>
           
           <div class="weixin box-shadow">

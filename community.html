@@ -31,15 +31,15 @@
             <p class="tit">推荐</p>
             <ul class="rec-list" >
                 <li class="class-item">
-                   <p class="title"><i class="ic ic-topic"></i>今日话题</p>
+                   <p class="title"><i class="ic ic-topic"></i>公告</p>
                     <a v-for="topic in topics" target="_blank" v-bind:href="['/details.html?id='+topic.notice_id]" v-bind:title="topic.title" class="">{{topic.title}}</a>
                 </li>
                 <li class="class-item">
-                    <p class="title"><i class="ic ic-guide"></i>进阶指南</p>
+                    <p class="title"><i class="ic ic-guide"></i>攻略</p>
                    <a v-for="guide in guides" target="_blank" v-bind:href="['/details.html?id='+guide.notice_id]" v-bind:title="guide.title" class="">{{guide.title}}</a>
                 </li>
                 <li class="class-item">
-                    <p class="title"><i class="ic ic-ash"></i>骨灰玩家</p>
+                    <p class="title"><i class="ic ic-ash"></i>资讯</p>
                    <a v-for="ash in ashs" target="_blank" v-bind:href="['/details.html?id='+ash.notice_id]" v-bind:title="ash.title" class="">{{ash.title}}</a>
                 </li>
             </ul>
