@@ -22,7 +22,7 @@ $(function(){
                     methods:{
                         //对一个包含对象的数组的排序，需要提供一个对象键并以此值来进行排序
                         order: function(key,order) {
-                            $(".tabs li").removeClass("cur");
+                            $(".tabs li,.thead th").removeClass("cur");
                             $("."+ key).addClass("cur");
                             req.n = 1;
                             req.order = order;  
@@ -201,6 +201,24 @@ $(function(){
                 $(".highlight").css({ fontWeight: "600",color:"red" });
         }
 
+        var backToTop =function(){
+            var options = {
+                setting: { 
+                    startline:10,          // 鼠标向下滚动距离，出现#topcontrol图标
+                    scrollto:0,           // 它的值可以是整数，也可以是一个id标记。
+                    scrollduration:100,    // 滑动到的scrollto的速度，值越大越慢
+                    fadeduration:[100, 100] //#topcontrol这个div的淡入淡出速度，第一个参数为淡入速度，第二个参数为淡出速度
+                },
+                controlHTML: '<a href="#top" class="top_stick"><img src="images/top.png" style="width:50px; height:50px" /></a>',//控制向上滑动的html源码
+                
+                anchorkeyword: '',//滑动到的id标签
+                state: {
+                    isvisible:false,    //是否#topcontrol图标这个div为可见
+                    shouldvisible:false //是否#topcontrol图标这个div该出现
+                }
+            }
+            $(window).BackToTop(options);
+        }
         //初始化函数
         var init = function(){
             initAdv();//广告初始化
@@ -209,6 +227,7 @@ $(function(){
             var vm = createVm();//创建表格
             scroll(vm);//滚动监听
             searchContent(vm);
+            backToTop();
         };
 
         return{
